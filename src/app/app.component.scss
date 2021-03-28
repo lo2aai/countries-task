@@ -1,0 +1,29 @@
+// Start Upper Header
+$desktop-maxwidth: 1200px;
+
+* {
+    font-family: 'Nunito Sans', sans-serif;
+}
+.container {
+    max-width: $desktop-maxwidth;
+    margin: 0 auto;
+    
+    header {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 1fr 1fr;
+
+        h1 {
+            margin: 0;
+        }
+
+        span {
+            display: grid;
+            grid-auto-flow: column;
+            gap: 8px;
+            justify-content: end;
+            align-items: center;
+        }
+    }
+}
+// End Upper Header

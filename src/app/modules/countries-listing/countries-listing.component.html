@@ -1,0 +1,45 @@
+<section>
+    <div class="container">
+        <div class="filter-and-search-row">
+            <div class="searchbar-wrapper">
+                <i class="fas fa-search"></i>
+                <input placeholder="Search for a country..." type="text" name="search" [(ngModel)]="userSearchKeyWord" (ngModelChange)="this.userSearchUpdate.next($event)">
+            </div>
+
+            <div class="dropdown-filter-wrapper">
+
+                <select (change)="getCountriesWithRegion($event.target.value)">
+                    <option value="" selected disabled hidden>Filter By Region</option>
+                    <option>All</option>
+                    <option>Africa</option>
+                    <option>America</option>
+                    <option>Asia</option>
+                    <option>Europe</option>
+                    <option>Oceania</option>
+                </select>
+            </div>
+        </div>
+
+        <div *ngIf="error == false; else errorTemplate" class="countries-cards-wrapper">
+            <ng-container *ngFor="let item of data">
+                <div (click)="countryClick(item)" class="country-card">
+                    <div class="country-image-container">
+                        <img src="{{item.flag}}" alt="">
+                    </div>
+                    <div class="country-details">
+                        <h1>{{item.name}}</h1>
+                        <p>Population: <span>{{item.population}}</span></p>
+                        <p>Region: <span>{{item.region}}</span></p>
+                        <p>Capital: <span>{{item.capital}}</span></p>
+                    </div>
+                </div> 
+            </ng-container>
+        </div>
+        
+        <ng-template #errorTemplate>
+            <h1>
+                There Is An Error Please Try Again!
+            </h1>
+        </ng-template>
+    </div>
+</section>

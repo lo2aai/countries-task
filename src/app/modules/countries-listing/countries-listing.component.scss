@@ -1,0 +1,72 @@
+$desktop-maxwidth: 1200px;
+
+* {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+// Start Main Section
+section {
+    background-color:  hsl(0, 0%, 98%);
+    width: 95%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    .container {
+        .filter-and-search-row {
+            display: grid;
+            grid-auto-flow: column;
+            padding: 2rem 0;
+            .searchbar-wrapper {
+                width: 60%;
+                input {
+                    border: none;
+                    width: 95%;
+                    height: 35px;
+                    padding: 0;
+                    margin: 0;
+                    position: relative;
+                }
+            }
+            .dropdown-filter-wrapper {
+                display: grid;
+                justify-content: end;
+            }  
+        }      
+        .countries-cards-wrapper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+            grid-gap: 1rem;
+            grid-auto-flow: row;
+
+            .country-card {
+                border-radius: 4px;
+                cursor: pointer;
+                .country-image-container {
+                    width: 100%;
+                    height: 200px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 4px 4px 0 0;
+                    }
+                }
+                .country-details {
+                    background-color: white;
+                    margin: 0;
+                    padding: 8px;
+                    margin-top: -8px;
+                    border-radius: 0 0 4px 4px;
+                    h1 {
+                        font-size: 1rem;
+                        text-align: center;
+                        margin: 0;
+                    }
+
+                }
+            }    
+        }
+    }
+}
+
+// End Main Section
+
