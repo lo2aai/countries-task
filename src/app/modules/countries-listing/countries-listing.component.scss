@@ -11,6 +11,8 @@ section {
     margin: 0 auto;
     padding: 2rem 1rem;
     .container {
+        max-width: $desktop-maxwidth;
+        margin: 0 auto;
         .filter-and-search-row {
             display: grid;
             grid-auto-flow: column;
@@ -29,6 +31,10 @@ section {
             .dropdown-filter-wrapper {
                 display: grid;
                 justify-content: end;
+                select {
+                    border: none;
+                    padding: 0rem 2rem 0rem 0
+                }
             }  
         }      
         .countries-cards-wrapper {

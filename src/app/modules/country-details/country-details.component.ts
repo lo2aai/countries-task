@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-country-details',
   templateUrl: './country-details.component.html',
-  styleUrls: ['./country-details.component.css']
+  styleUrls: ['./country-details.component.scss']
 })
 export class CountryDetailsComponent implements OnInit {
 

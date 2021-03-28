@@ -1,0 +1,16 @@
+$desktop-maxwidth: 1200px;
+
+
+.container {
+    max-width: $desktop-maxwidth;
+    margin: 0 auto;
+    padding-top: 2rem;
+
+    a {
+        text-decoration: none;
+        border: 1px solid lightgrey;
+        padding: .5rem 2rem;
+        border-radius: 4px;
+        color: black;
+    }
+}
