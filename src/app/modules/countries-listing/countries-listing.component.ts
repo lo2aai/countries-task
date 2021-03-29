@@ -83,9 +83,7 @@ export class CountriesListingComponent implements OnInit {
   }
   
   countryClick(country) {
-    this.router.navigate(['/countryDetails/'], {queryParams: {
-      country: JSON.stringify(country)
-    }})
+    this.router.navigate(['/countryDetails/', country])
   }
 
 

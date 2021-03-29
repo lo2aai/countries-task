@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MainServiceService } from 'src/app/services/main-service.service';
+
+
 
 @Component({
   selector: 'app-country-details',
@@ -10,6 +13,7 @@ export class CountryDetailsComponent implements OnInit {
 
   constructor(
     public ActivatedRoute: ActivatedRoute,
+    public MainServiceService: MainServiceService
   ) { }
 
   country;
@@ -20,15 +24,19 @@ export class CountryDetailsComponent implements OnInit {
 
   languages;
 
+  countryName;
+
   ngOnInit(): void {
-    
-    this.ActivatedRoute.queryParams.subscribe((res:any)=> {
-      this.country = JSON.parse(res.country);
+    this.ActivatedRoute.params.subscribe((res:any)=> {
+      this.countryName = res.name;
     });
 
-    this.domains = this.country.topLevelDomain;
-    this.currencies = this.country.currencies;
-    this.languages = this.country.languages;
+    this.MainServiceService.getCountriesByName(this.countryName).subscribe((res:any) => {
+      this.country = res[0];
+      this.domains = this.country.topLevelDomain;
+      this.currencies = this.country.currencies;
+      this.languages = this.country.languages;
+    })
   }
 
 }

@@ -12,7 +12,7 @@
                     <option value="" selected disabled hidden>Filter By Region</option>
                     <option>All</option>
                     <option>Africa</option>
-                    <option>America</option>
+                    <option>Americas</option>
                     <option>Asia</option>
                     <option>Europe</option>
                     <option>Oceania</option>
@@ -22,7 +22,7 @@
 
         <div *ngIf="error == false; else errorTemplate" class="countries-cards-wrapper">
             <ng-container *ngFor="let item of data">
-                <div (click)="countryClick(item)" class="country-card">
+                <div (click)="countryClick(item.name)" class="country-card">
                     <div class="country-image-container">
                         <img src="{{item.flag}}" alt="">
                     </div>
