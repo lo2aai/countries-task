@@ -13,12 +13,23 @@ export class CountryDetailsComponent implements OnInit {
   ) { }
 
   country;
+
+  domains;
+
+  currencies;
+
+  languages;
+
   ngOnInit(): void {
     
     this.ActivatedRoute.queryParams.subscribe((res:any)=> {
       this.country = JSON.parse(res.country);
-      console.log(this.country);
     });
+
+    this.domains = this.country.topLevelDomain;
+    this.currencies = this.country.currencies;
+    this.languages = this.country.languages;
+    
 
   }
 

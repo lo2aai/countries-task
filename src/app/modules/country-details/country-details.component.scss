@@ -1,5 +1,9 @@
 $desktop-maxwidth: 1200px;
 
+* {
+    font-family: 'Nunito Sans', sans-serif;;
+}
+
 
 .container {
     max-width: $desktop-maxwidth;
@@ -12,5 +16,57 @@ $desktop-maxwidth: 1200px;
         padding: .5rem 2rem;
         border-radius: 4px;
         color: black;
+    }
+
+    .whole-country-wrapper {
+        margin-top: 2rem;
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+
+        .country-image-container {
+            width: 100%;
+            height: 100%;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
+        .country-details-container {
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+
+
+            .left-side-of-country-data {
+                h1 {
+                    margin: .3rem 0;
+                }
+            }
+
+            .right-side-of-country-data {
+                margin-top: 2.99rem;
+            }
+
+            .left-side-of-country-data,
+            .right-side-of-country-data {
+                display: flex;
+                flex-direction: column;
+                
+                p {
+                    margin: .4rem 0;
+                    font-weight: bold;
+                    span {
+                        padding: .5rem .3rem;
+                        font-weight: lighter;
+                    }
+                }
+            }
+
+        }
     }
 }
