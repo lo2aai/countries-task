@@ -9,17 +9,13 @@ const routes: Routes = [
     path: '',
 
     // The empty route, routes for listing component just for now tell I had a login page  
-    loadChildren: () => import('./modules/countries-listing/countries-listing.module').then(m => m.CountriesListingModule)
-  },
-
-  {
-    path: 'countryDetails',
-    loadChildren: () => import('./modules/country-details/country-details.module').then(m => m.CountryDetailsModule)
+    loadChildren: () => import('./modules/country/country.module').then(m => m.CountryModule)
   },
 
   { 
-    path: 'countries-listing', 
-    loadChildren: () => import('./modules/countries-listing/countries-listing.module').then(m => m.CountriesListingModule)
+    path: 'countries-listing',
+    loadChildren: () =>
+    import('./modules/country/country.module').then(m => m.CountryModule)   
   }
 ];
 

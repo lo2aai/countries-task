@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 
 
 
-import { MainServiceService } from '../../services/main-service.service';
+import { MainServiceService } from '../../../services/main-service.service';
 
 
 @Component({
@@ -83,7 +83,8 @@ export class CountriesListingComponent implements OnInit {
   }
   
   countryClick(country) {
-    this.router.navigate(['/countryDetails/', country])
+    console.log(country);
+    this.router.navigate(['/countryDetails', country])
   }
 
 
