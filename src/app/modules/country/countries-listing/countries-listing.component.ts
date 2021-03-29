@@ -42,7 +42,7 @@ export class CountriesListingComponent implements OnInit {
     this.getAllCountries();
   }
 
-  // This function takse the user input keyword and search with it, if it dosent excist or it returns an error it reassign the value of error variable with true, and so on.
+  // This function takes the user input keyword and search with it, if it dose not excist  or it returns an error it reassign the value of error variable with true, and so on.
   getCountriesWithSearchKeyWord() {
     this.userSearchUpdate.pipe(
       debounceTime(500),
@@ -83,7 +83,6 @@ export class CountriesListingComponent implements OnInit {
   }
   
   countryClick(country) {
-    console.log(country);
     this.router.navigate(['/countryDetails', country])
   }
 
