@@ -7,8 +7,9 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '',
-    pathMatch: 'full'
+
+    // The empty route, routes for listing component just for now tell I had a login page  
+    loadChildren: () => import('./modules/countries-listing/countries-listing.module').then(m => m.CountriesListingModule)
   },
 
   {

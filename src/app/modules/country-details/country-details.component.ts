@@ -29,8 +29,6 @@ export class CountryDetailsComponent implements OnInit {
     this.domains = this.country.topLevelDomain;
     this.currencies = this.country.currencies;
     this.languages = this.country.languages;
-    
-
   }
 
 }
