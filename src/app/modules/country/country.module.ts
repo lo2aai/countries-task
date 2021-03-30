@@ -5,7 +5,7 @@ import { CountryRoutingModule } from './country-routing.module';
 import { CountryDetailsComponent } from './country-details/country-details.component';
 import { CountriesListingComponent } from './countries-listing/countries-listing.component';
 import { FormsModule } from '@angular/forms';
-import { sharedComponentsModule } from 'src/app/shared/components/components.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -22,7 +22,7 @@ import { sharedComponentsModule } from 'src/app/shared/components/components.mod
     CountryRoutingModule,
     CommonModule,
     FormsModule,
-    sharedComponentsModule
+    SharedModule
   ]
 })
 export class CountryModule { }

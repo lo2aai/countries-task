@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { sharedComponentsModule } from './components/components.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from "@angular/material/form-field";
+
 
 
 
@@ -9,10 +12,14 @@ import { sharedComponentsModule } from './components/components.module';
   declarations: [],
   imports: [
     CommonModule,
-    sharedComponentsModule
+    sharedComponentsModule,
+    MatSnackBarModule,
+    MatFormFieldModule
   ],
   exports: [
-    sharedComponentsModule
+    sharedComponentsModule,
+    MatSnackBarModule,
+    MatFormFieldModule
   ]
 })
 export class SharedModule { }

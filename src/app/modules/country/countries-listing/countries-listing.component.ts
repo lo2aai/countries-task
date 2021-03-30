@@ -7,7 +7,10 @@ import { Subject } from 'rxjs';
 
 import { MainServiceService } from '../../../services/main-service.service';
 import { CountryModel } from '../models/country.model';
-import { flatten } from '@angular/compiler';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+
 
 
 @Component({
@@ -26,10 +29,13 @@ export class CountriesListingComponent implements OnInit {
   error: boolean = false;
 
   whiteSpacesError: boolean = false;
+
+  specialCharactersFormat  = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
   
   constructor( 
     public mainService: MainServiceService,
     public router: Router,
+    private _snackBar: MatSnackBar
   ) {
 
     this.getCountriesWithSearchKeyWord()
@@ -41,7 +47,7 @@ export class CountriesListingComponent implements OnInit {
     this.getAllCountries();
   }
 
-  // This function takes the user input keyword and search with it, if it dose not excist  or it returns an error it reassign the value of error variable with true, and so on.
+  // This function takes the user input keyword and search with it, if it dose not exist  or it returns an error it reassign the value of error variable with true, and so on.
   getCountriesWithSearchKeyWord() {
     this.userSearchUpdate.pipe(
       debounceTime(500),
@@ -49,10 +55,13 @@ export class CountriesListingComponent implements OnInit {
       .subscribe(value => {
         // If the input is not empty
         if (value !== "") {
+          // This regex removes all the spaces from user input if the length of the value = 0 so the user only entered white spaces 
           if (!value.replace(/\s/g, '').length) {
             this.error = true;
             this.whiteSpacesError = true;
             return(this.whiteSpacesError, this.error);
+          } else if (this.specialCharactersFormat.test(value)) {
+            return this.openSnackBar('Please remove any special character', 'Close')
           }
           // // regex tests if the 
           // /^\s/.test(value);
@@ -64,7 +73,6 @@ export class CountriesListingComponent implements OnInit {
             this.error = true;
             this.whiteSpacesError = false;
           });
-          // This regex removes all the spaces from user input if the length of the value = 0 so the user only entered white spaces 
         } else {
           // if the input is empty call all countries.
           this.error = false;
@@ -94,6 +102,12 @@ export class CountriesListingComponent implements OnInit {
     this.router.navigate(['/countryDetails', country])
   }
 
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
 
 }
