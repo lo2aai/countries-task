@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 
 
 import { MainServiceService } from '../../../services/main-service.service';
+import { CountryModel } from '../models/country.model';
 
 
 @Component({
@@ -15,18 +16,13 @@ import { MainServiceService } from '../../../services/main-service.service';
 })
 export class CountriesListingComponent implements OnInit {
 
-  data;
-
-  nameFilterdData;
+  data:CountryModel[] ;
 
   userSearchUpdate = new Subject<string>();
 
   userSearchKeyWord: string;
 
-  error = false;
-
-  
-  selectValue;
+  error: boolean = false;
   
   constructor( 
     public mainService: MainServiceService,
