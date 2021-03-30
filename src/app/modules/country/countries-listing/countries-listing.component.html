@@ -7,7 +7,6 @@
             </div>
 
             <div class="dropdown-filter-wrapper">
-
                 <select (change)="getCountriesWithRegion($event.target.value)">
                     <option value="" selected disabled hidden>Filter By Region</option>
                     <option>All</option>
@@ -20,7 +19,7 @@
             </div>
         </div>
 
-        <div *ngIf="error == false; else errorTemplate" class="countries-cards-wrapper">
+        <div *ngIf="!error" class="countries-cards-wrapper">
             <ng-container *ngFor="let item of data">
                 <div (click)="countryClick(item.name)" class="country-card">
                     <div class="country-image-container">
@@ -35,11 +34,25 @@
                 </div> 
             </ng-container>
         </div>
+
+        <ng-container *ngIf="error && !whiteSpacesError;">
+            <app-error-message message="Sorry Please Try Again"></app-error-message>
+        </ng-container>
         
-        <ng-template #errorTemplate>
-            <h1>
-                <app-error-message [message]="'Sorry Please Try Again'"></app-error-message>
-            </h1>
+        <ng-container *ngIf="error && whiteSpacesError;">
+            <app-error-message message="You have entered only white spaces"></app-error-message>
+        </ng-container>
+        
+        <!-- <ng-template #errorTemplateWhenNoResults>
+            
+            <ng-container *ngIf="error && !whiteSpacesError; else whiteSpacesError">    
+                <app-error-message message="Sorry Please Try Again"></app-error-message>
+            </ng-container>
+            
         </ng-template>
+
+        <ng-template #whiteSpacesError>
+            <app-error-message message="You have entered only white spaces "></app-error-message>
+        </ng-template> -->
     </div>
 </section>

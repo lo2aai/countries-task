@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 
 import { MainServiceService } from '../../../services/main-service.service';
 import { CountryModel } from '../models/country.model';
+import { flatten } from '@angular/compiler';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class CountriesListingComponent implements OnInit {
   userSearchKeyWord: string;
 
   error: boolean = false;
+
+  whiteSpacesError: boolean = false;
   
   constructor( 
     public mainService: MainServiceService,
@@ -46,13 +49,22 @@ export class CountriesListingComponent implements OnInit {
       .subscribe(value => {
         // If the input is not empty
         if (value !== "") {
+          if (!value.replace(/\s/g, '').length) {
+            this.error = true;
+            this.whiteSpacesError = true;
+            return(this.whiteSpacesError, this.error);
+          }
+          // // regex tests if the 
+          // /^\s/.test(value);
           this.error = false;
           this.mainService.getCountriesByName(value.toLocaleLowerCase()).subscribe((res: any) => {
             this.data = res;
           },
-            err => {
-              this.error = true;
-            });
+          err => {
+            this.error = true;
+            this.whiteSpacesError = false;
+          });
+          // This regex removes all the spaces from user input if the length of the value = 0 so the user only entered white spaces 
         } else {
           // if the input is empty call all countries.
           this.error = false;
