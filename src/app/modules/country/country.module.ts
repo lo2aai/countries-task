@@ -4,8 +4,10 @@ import { CommonModule } from '@angular/common';
 import { CountryRoutingModule } from './country-routing.module';
 import { CountryDetailsComponent } from './country-details/country-details.component';
 import { CountriesListingComponent } from './countries-listing/countries-listing.component';
-import { FormsModule } from '@angular/forms';
+import { NgxsModule } from '@ngxs/store';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CountriesState } from './state/countries.state';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,8 +23,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     CountryRoutingModule,
     CommonModule,
+    SharedModule,
     FormsModule,
-    SharedModule
+    NgxsModule.forFeature([CountriesState])
   ]
 })
 export class CountryModule { }

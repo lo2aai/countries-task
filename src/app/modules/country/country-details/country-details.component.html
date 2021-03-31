@@ -6,30 +6,30 @@
         </a>
     </div>
 
-    <div *ngIf="country">
+    <div *ngIf="filteredData">
         <div class="whole-country-wrapper">
             <div class="country-image-container">
-                <img src="{{country.flag}}" alt="">
+                <img src="{{(filteredData | async)?.flag}}"alt="">
             </div>
 
 
 
-            <div class="country-details-container">
-                <div class="left-side-of-country-data">
-                    <div class="country-name-heading">
+            <div class="filteredData-details-container">
+                <div class="left-side-of-filteredData-data">
+                    <div class="filteredData-name-heading">
                         <h1>
-                            {{country.name}}
+                            {{(filteredData | async)?.name}}
                         </h1>
                     </div>
-                    <p>Native Name: <span> {{country?.nativeName}}</span></p>
-                    <p>Population: <span> {{country?.population}}</span></p>
-                    <p>Region: <span> {{country?.region}}</span></p>
-                    <p>Sub Region: <span> {{country?.subregion}}</span></p>
-                    <p>Capital: <span> {{country?.capital}}</span></p>
+                    <p>Native Name: <span> {{(filteredData | async)?.nativeName}}</span></p>
+                    <p>Population: <span> {{(filteredData | async)?.population}}</span></p>
+                    <p>Region: <span> {{(filteredData | async)?.region}}</span></p>
+                    <p>Sub Region: <span> {{(filteredData | async)?.subregion}}</span></p>
+                    <p>Capital: <span> {{(filteredData | async)?.capital}}</span></p>
                 </div>
-                <div class="right-side-of-country-data">
-                    <p>Top Level Domain: <span> {{country?.topLevelDomain[0]}}</span></p>
-                    <p>Currencies: <span> {{country?.currencies[0].name}}</span></p>
+                <div class="right-side-of-filteredData-data">
+                    <!-- <p>Top Level Domain: <span> {{filteredData?.topLevelDomain[0]}}</span></p>
+                    <p>Currencies: <span> {{filteredData?.currencies[0].name}}</span></p> -->
                         <p>Languages: <span *ngFor="let language of languages;"> {{language.name}},</span></p>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 
 
@@ -9,6 +9,13 @@ import { MainServiceService } from '../../../services/main-service.service';
 import { CountryModel } from '../models/country.model';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Select, Store } from '@ngxs/store';
+import { getAllCountriesWithStateManagement, getCountriesByName, getCountriesWithRegionName } from '../state/countries.action';
+import { CountriesState } from '../state/countries.state';
+
+
+
+
 
 
 
@@ -20,7 +27,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CountriesListingComponent implements OnInit {
 
-  data:CountryModel[] ;
 
   userSearchUpdate = new Subject<string>();
 
@@ -35,12 +41,15 @@ export class CountriesListingComponent implements OnInit {
   constructor( 
     public mainService: MainServiceService,
     public router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private store: Store,
   ) {
 
     this.getCountriesWithSearchKeyWord()
   }
 
+  // I need to create another selector for the single country getter
+  @Select(CountriesState.allCountries) public data: Observable<CountryModel[]>;
 
 
   ngOnInit(): void {
@@ -63,16 +72,8 @@ export class CountriesListingComponent implements OnInit {
           } else if (this.specialCharactersFormat.test(value)) {
             return this.openSnackBar('Please remove any special character', 'Close')
           }
-          // // regex tests if the 
-          // /^\s/.test(value);
           this.error = false;
-          this.mainService.getCountriesByName(value.toLocaleLowerCase()).subscribe((res: any) => {
-            this.data = res;
-          },
-          err => {
-            this.error = true;
-            this.whiteSpacesError = false;
-          });
+          this.getAllCountriesWithName(value);
         } else {
           // if the input is empty call all countries.
           this.error = false;
@@ -81,18 +82,11 @@ export class CountriesListingComponent implements OnInit {
     });
   }
 
-  getAllCountries(){
-    this.mainService.getAllCountries().subscribe((res) => {
-      this.data = res;
-    })
-  }
 
 
-  getCountriesWithRegion(value) {
+  getCountriesWithRegionValueCheck(value) {
     if(value !== "All"){
-      this.mainService.getCountriesByRegion(value).subscribe((res:any) => {
-        this.data = res;
-      })
+      this.getCountriesWithRegion(value);
     } else {
       this.getAllCountries();
     }
@@ -109,5 +103,18 @@ export class CountriesListingComponent implements OnInit {
     });
   }
 
+  getAllCountries() {
+    this.store.dispatch(new getAllCountriesWithStateManagement());
+  }
+
+
+  getAllCountriesWithName(name) {
+    this.store.dispatch(new getCountriesByName(name));
+  }
+
+
+  getCountriesWithRegion(regionName) {
+    this.store.dispatch(new getCountriesWithRegionName(regionName));
+  }
 
 }

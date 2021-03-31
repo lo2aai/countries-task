@@ -7,7 +7,7 @@
             </div>
 
             <div class="dropdown-filter-wrapper">
-                <select (change)="getCountriesWithRegion($event.target.value)">
+                <select (change)="getCountriesWithRegionValueCheck($event.target.value)">
                     <option value="" selected disabled hidden>Filter By Region</option>
                     <option>All</option>
                     <option>Africa</option>
@@ -20,7 +20,7 @@
         </div>
 
         <div *ngIf="!error" class="countries-cards-wrapper">
-            <ng-container *ngFor="let item of data">
+            <ng-container *ngFor="let item of data | async">
                 <div (click)="countryClick(item.name)" class="country-card">
                     <div class="country-image-container">
                         <img src="{{item.flag}}" alt="">
