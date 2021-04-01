@@ -109,7 +109,14 @@ export class CountriesListingComponent implements OnInit {
 
 
   getAllCountriesWithName(name) {
-    this.store.dispatch(new getCountriesByName(name));
+    this.store.dispatch(new getCountriesByName(name)).subscribe(
+      () => {
+      },
+      error => {
+        this.error = true;
+        this.whiteSpacesError = false;
+      }
+    );
   }
 
 
